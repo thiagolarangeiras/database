@@ -1,20 +1,23 @@
+DROP TABLE IF EXISTS categoria;
 CREATE TABLE categoria(
     idCategoria int identity NOT NULL,
     nome varchar(50) NOT NULL,
-    descricao text NULL, 
+    descricao varchar(500) NULL, 
     primary key (idCategoria)
 );
 
+DROP TABLE IF EXISTS produto;
 CREATE TABLE produto(
     idProduto int identity NOT NULL,
-    idCategoria int NOT NULL,
+    idCategoria int NULL,
     nome varchar(50) NOT NULL,
-    descricao text NULL,
-    peso decimal(14,4) NULL,
+    descricao varchar(500) NULL,
+    peso decimal(8,3) NULL,
     preco decimal(12,2) NULL,
     primary key (idProduto)
 );
 
+DROP TABLE IF EXISTS estoque;
 CREATE TABLE estoque(
     idEstoque int identity NOT NULL,
     idProduto int NOT NULL,
@@ -26,23 +29,24 @@ CREATE TABLE estoque(
     primary key (idEstoque)    
 );
 
+DROP TABLE IF EXISTS localizacao;
 CREATE TABLE localizacao(
     idLocalizacao int identity NOT NULL,
-    nome varchar(50) NOT NULL,
     cidade varchar(50) NOT NULL,
     bairro varchar(50) NOT NULL,
-    logradouro varchar(50) NOT NULL,
+    logradouro varchar(100) NOT NULL,
     numero int NOT NULL,
     cep int NOT NULL,
     primary key (idLocalizacao)
 );
 
+DROP TABLE IF EXISTS transacao;
 CREATE TABLE transacao(
     idTransacao int identity NOT NULL,
     idFornecedor int NOT NULL,
     idTransportadora int NOT NULL,
-    data_compra datetime NOT NULL,
-    data_entrada datetime NULL,
+    dataRegistro datetime NOT NULL,
+    dataFim datetime NULL,
     preco decimal(12, 2) NOT NULL,
     frete decimal(12, 2) NULL,
     imposto decimal(12, 2) NULL,
@@ -50,6 +54,7 @@ CREATE TABLE transacao(
     primary key (idTransacao)
 );
 
+DROP TABLE IF EXISTS transacaoItens; 
 CREATE TABLE transacaoItens(
     idTransacaoItens int identity NOT NULL,
     idProduto int NOT NULL,
@@ -59,6 +64,7 @@ CREATE TABLE transacaoItens(
     primary key (idTransacaoItens)
 );
 
+DROP TABLE IF EXISTS fornecedor;
 CREATE TABLE fornecedor(
     idFornecedor int identity NOT NULL,
     idLocalizacao int NOT NULL,
@@ -69,9 +75,11 @@ CREATE TABLE fornecedor(
     primary key (idFornecedor)
 );
 
+DROP TABLE IF EXISTS transportadora;
 CREATE TABLE transportadora(
     idTransportadora int identity NOT NULL,
     idLocalizacao int NOT NULL,
+    nome varchar(100),
     cnpj varchar(14) NOT NULL,
     telefone varchar(20) NULL,
     email varchar(50) NULL,
