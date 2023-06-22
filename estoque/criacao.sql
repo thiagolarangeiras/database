@@ -13,7 +13,7 @@ CREATE TABLE produto(
     nome varchar(50) NOT NULL,
     descricao varchar(500) NULL,
     peso decimal(8,3) NULL,
-    preco decimal(12,2) NULL,
+    preco decimal(9,2) NULL,
     primary key (idProduto)
 );
 
@@ -36,7 +36,7 @@ CREATE TABLE localizacao(
     bairro varchar(50) NOT NULL,
     logradouro varchar(100) NOT NULL,
     numero int NOT NULL,
-    cep int NOT NULL,
+    cep char(8) NOT NULL,
     primary key (idLocalizacao)
 );
 
@@ -47,9 +47,9 @@ CREATE TABLE transacao(
     idTransportadora int NOT NULL,
     dataRegistro datetime NOT NULL,
     dataFim datetime NULL,
-    preco decimal(12, 2) NOT NULL,
-    frete decimal(12, 2) NULL,
-    imposto decimal(12, 2) NULL,
+    preco decimal(9, 2) NOT NULL,
+    frete decimal(9, 2) NULL,
+    imposto decimal(9, 2) NULL,
     tipo int NOT NULL CHECK (tipo in (1,2)),
     primary key (idTransacao)
 );
@@ -69,7 +69,7 @@ CREATE TABLE fornecedor(
     idFornecedor int identity NOT NULL,
     idLocalizacao int NOT NULL,
     nome varchar(100),
-    cnpj varchar(14) NOT NULL,
+    cnpj char(14) NOT NULL,
     telefone varchar(20) NOT NULL,
     email text NOT NULL,
     primary key (idFornecedor)
@@ -80,7 +80,7 @@ CREATE TABLE transportadora(
     idTransportadora int identity NOT NULL,
     idLocalizacao int NOT NULL,
     nome varchar(100),
-    cnpj varchar(14) NOT NULL,
+    cnpj char(14) NOT NULL,
     telefone varchar(20) NULL,
     email varchar(50) NULL,
     primary key (idTransportadora)
