@@ -32,6 +32,7 @@ CREATE TABLE estoque(
 DROP TABLE IF EXISTS localizacao;
 CREATE TABLE localizacao(
     idLocalizacao int identity NOT NULL,
+    uf char(2) NOT NULL,
     cidade varchar(50) NOT NULL,
     bairro varchar(50) NOT NULL,
     logradouro varchar(100) NOT NULL,
