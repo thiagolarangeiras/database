@@ -50,7 +50,7 @@ CREATE TABLE transacao(
     preco decimal(9, 2) NOT NULL,
     frete decimal(9, 2) NULL,
     imposto decimal(9, 2) NULL,
-    tipo int NOT NULL CHECK (tipo in (1,2)),
+    tipo bool NOT NULL,
     primary key (idTransacao)
 );
 
