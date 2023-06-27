@@ -33,4 +33,12 @@ inner join Estoque c
 in a.idProduto = c.idProduto
 where c.qtdeEstoque < c.qtdemin
 
--- 
+-- Quais produtos estão próximos da quantidade mínima
+select distinct a.nome, b.nome
+from Produto a
+inner join Categoria b
+in a.idCategoria = b.idCategoria
+inner join Estoque c
+in a.idProduto = c.idProduto
+where c.qtdeEstoque < c.qtdemin*2
+
