@@ -22,7 +22,7 @@ CREATE TABLE estoque(
     idEstoque int identity NOT NULL,
     idProduto int NOT NULL,
     idLocalizacao int NOT NULL,
-    nome text NOT NULL,
+    nome varchar(100) NOT NULL,
     qtde_min int NOT NULL,
     qtde_estoque int NOT NULL,
     total int NOT NULL,
@@ -71,7 +71,7 @@ CREATE TABLE fornecedor(
     nome varchar(100),
     cnpj char(14) NOT NULL,
     telefone varchar(20) NOT NULL,
-    email text NOT NULL,
+    email varchar(256) NOT NULL,
     primary key (idFornecedor)
 );
 
