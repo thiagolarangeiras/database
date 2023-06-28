@@ -65,6 +65,7 @@ CREATE TABLE transacao(
 DROP TABLE IF EXISTS transacaoItens; 
 CREATE TABLE transacaoItens(
     idTransacaoItens int identity NOT NULL,
+    idEstoqueItens int NOT NULL,
     idProduto int NOT NULL,
     idEstoque int NOT NULL,
     idtransacao int NOT NULL,
