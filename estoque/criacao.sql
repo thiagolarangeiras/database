@@ -32,7 +32,7 @@ CREATE TABLE estoqueItens(
     idProduto int NOT NULL, 
     qtde_min smallint NOT NULL,
     qtde_max int NOT NULL,
-    total int NOT NULL,
+    qtde int NOT NULL,
     primary key (idEstoqueItens)    
 );
 
