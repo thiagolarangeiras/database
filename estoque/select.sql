@@ -65,7 +65,7 @@ INNER JOIN categoria b
 ON a.idCategoria = b.idCategoria
 INNER JOIN estoqueItens c
 IN a.idProduto = c.idProduto
-WHERE c.qtdeEstoque < c.qtdemin;
+WHERE c.qtde < c.qtde_min;
 
 -- 9) Quais produtos estão próximos ou abaixo da quantidade mínima?
 SELECT a.nome AS produto, b.nome AS categoria, c.idEstoque AS "id estoque"
@@ -74,4 +74,4 @@ INNER JOIN categoria b
 ON a.idCategoria = b.idCategoria
 INNER JOIN estoqueItens c
 ON a.idProduto = c.idProduto
-WHERE c.qtdeEstoque < c.qtdemin*2;
+WHERE c.qtde < c.qtde_min*2;
