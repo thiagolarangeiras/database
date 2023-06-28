@@ -33,7 +33,7 @@ CREATE TABLE estoqueItens(
     qtde_min smallint NOT NULL,
     qtde_max int NOT NULL,
     qtde int NOT NULL,
-    primary key (idEstoqueItens)    
+    primary key (idEstoqueItens, idEstoque, idProduto)    
 );
 
 DROP TABLE IF EXISTS localizacao;
