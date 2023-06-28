@@ -119,3 +119,15 @@ INSERT INTO transacaoItens (idEstoqueItens, idProduto, idEstoque, idtransacao, q
     (8, 21, 3, 1, 10),
     (9, 21, 1, 2, 3)
 ;
+
+UPDATE estoqueItens
+SET qtde = qtde + (
+    SELECT SUM(qtde) 
+    FROM transacaoItens
+    WHERE transacao.idEstoque = estoqueItens.idEstoque
+)
+WHERE EXISTS (
+    SELECT 1 
+    FROM transacaoItens
+    WHERE transacaoItens.idEstoque = estoqueItens.idEstoque
+);
