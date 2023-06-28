@@ -27,21 +27,21 @@ INSERT INTO produto (idcategoria, nome, descricao, peso, preco) VALUES
     (3, 'Torneira', 'Com resistência', 0.5, 100),
     (4, 'toalha', 'com bordado', 0.3, 20),
     (5, 'feijão enlatado', 'vencido', 1, 20),
-    (6, 'eletrônicos', 'produtos eletrônicos'),
-    (7, 'ração', 'produtos de ração'),
-    (8, 'brinquedo da China', 'produtos da China'),
-    (9, 'remédios', 'produtos farmacêuticos'),
+    (6, 'eletrônicos', 'produtos eletrônicos', 1, 20),
+    (7, 'ração', 'produtos de ração', 1, 20),
+    (8, 'brinquedo da China', 'produtos da China', 1, 20),
+    (9, 'remédios', 'produtos farmacêuticos', 1, 20),
 
-    (10, 'Ford J-Car', 'Ford GT pirata'),
-    (10, 'Silhouette', 'Carro feio'),
-    (10, 'Custom Police Cruiser', 'policia'),
-    (10, 'Porsche Carrera', '2000 Hot Wheels '),
-    (10, '1970 Pontiac Firebird', 'HW Dream Garage'),
-    (10, '1970 Pontiac Firebird (2nd Color)', 'HW Dream Garage'),
-    (10, 'Porsche 935', 'HW Turbo'),
-    (10, 'Dodge Challenger verde do ben ten', 'o jp tem esse carro na vida real!!!!'),
-    (10, '69 Ford Mustang', 'Modelo do 007'),
-    (10, 'HW450F', 'motinha top eu tinha uma dessa')
+    (10, 'Ford J-Car', 'Ford GT pirata', 1, 20),
+    (10, 'Silhouette', 'Carro feio', 1, 20),
+    (10, 'Custom Police Cruiser', 'policia', 1, 20),
+    (10, 'Porsche Carrera', '2000 Hot Wheels ', 1, 20),
+    (10, '1970 Pontiac Firebird', 'HW Dream Garage', 1, 20),
+    (10, '1970 Pontiac Firebird (2nd Color)', 'HW Dream Garage', 1, 20),
+    (10, 'Porsche 935', 'HW Turbo', 1, 20),
+    (10, 'Dodge Challenger verde do ben ten', 'o jp tem esse carro na vida real!!!!', 1, 20),
+    (10, '69 Ford Mustang', 'Modelo do 007', 1, 20),
+    (10, 'HW450F', 'motinha top eu tinha uma dessa', 1, 20)
 ;
 
 INSERT INTO localizacao (cidade, bairro, logradouro, numero, cep) VALUES
@@ -124,7 +124,7 @@ UPDATE estoqueItens
 SET qtde = qtde + (
     SELECT SUM(qtde) 
     FROM transacaoItens
-    WHERE transacao.idEstoque = estoqueItens.idEstoque
+    WHERE transacaoItens.idEstoque = estoqueItens.idEstoque
 )
 WHERE EXISTS (
     SELECT 1 
