@@ -30,8 +30,8 @@ CREATE TABLE estoqueItens(
     idEstoqueItens int identity NOT NULL,
     idEstoque int NOT NULL,
     idProduto int NOT NULL, 
-    qtde_min int NOT NULL,
-    qtde_estoque int NOT NULL,
+    qtde_min smallint NOT NULL,
+    qtde_max int NOT NULL,
     total int NOT NULL,
     primary key (idEstoqueItens)    
 );
@@ -43,7 +43,7 @@ CREATE TABLE localizacao(
     cidade varchar(50) NOT NULL,
     bairro varchar(50) NOT NULL,
     logradouro varchar(100) NOT NULL,
-    numero int NOT NULL,
+    numero smallint NOT NULL,
     cep char(8) NOT NULL,
     primary key (idLocalizacao)
 );
@@ -51,7 +51,7 @@ CREATE TABLE localizacao(
 DROP TABLE IF EXISTS transacao;
 CREATE TABLE transacao(
     idTransacao int identity NOT NULL,
-    idFornecedor int NOT NULL,
+    idFornecedor int NULL,
     idTransportadora int NOT NULL,
     dataRegistro datetime NOT NULL,
     dataFim datetime NULL,
@@ -105,8 +105,7 @@ ALTER TABLE estoqueItens ADD CONSTRAINT fk_estoqueItens_estoque foreign key (idE
 ALTER TABLE transacao ADD CONSTRAINT fk_entrada_fornecedor foreign key (idFornecedor) references fornecedor (idFornecedor);
 ALTER TABLE transacao ADD CONSTRAINT fk_entrada_trasportadora foreign key (idTransportadora) references transportadora (idTransportadora);
 
-ALTER TABLE transacaoItens ADD CONSTRAINT fk_transacaoItens_produto foreign key (idProduto) references produto (idProduto);
-ALTER TABLE transacaoItens ADD CONSTRAINT fk_transacaoItens_estoque foreign key (idEstoque) references estoque (idEstoque);
+ALTER TABLE transacaoItens ADD CONSTRAINT fk_transacaoItens_estoqueItens foreign key (idEstoqueItens, idEstoque, idProduto) references estoqueItens (idEstoqueItens, idEstoque, idProduto);
 ALTER TABLE transacaoItens ADD CONSTRAINT fk_transacaoItens_transacao foreign key (idTransacao) references transacao (idTransacao); 
 
 ALTER TABLE fornecedor ADD CONSTRAINT fk_fornecedor_localizacao foreign key (idLocalizacao) references localizacao (idLocalizacao);
