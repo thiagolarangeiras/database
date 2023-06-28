@@ -54,7 +54,7 @@ INSERT INTO localizacao (cidade, bairro, logradouro, numero, cep) VALUES
     ('São José', 'Campinas', 'Av. Salvador di Bernardi', 77, '88101260')
 ;
 
-INSERT INTO estoqueItens (idEstoque, idProduto, qtde_min, qtde_maxima, qtde) VALUES
+INSERT INTO estoqueItens (idEstoque, idProduto, qtde_min, qtde_max, qtde) VALUES
     (1, 1, 5, 500, 60),
     (2, 2, 10, 50, 45),
     (1, 6, 20, 125, 23),
