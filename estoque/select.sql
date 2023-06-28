@@ -1,69 +1,70 @@
--- Quantos produtos entraram por mês?
-SELECT MONTH(b.dataFim) AS mes, COUNT(*) AS total
-from TransacaoItens a
-inner join transacao b
-on a.idTransacao = b.idTransacao
-where tipo = 0
-group by mes;
+-- 1) Quantos produtos entraram por mês?
+SELECT MONTH(b.dataFim) AS mes, SUM(a.qtde) AS total
+FROM transacaoItens a
+INNER JOIN transacao b
+ON a.idTransacao = b.idTransacao
+WHERE tipo = 0
+GROUP BY mes;
 
--- Quantos produtos saíram por mês?
+-- 2) Quantos produtos saíram por mês?
 SELECT MONTH(b.dataFim) AS mes, COUNT(*) AS total
-from TransacaoItens a
-inner join transacao b
-on a.idTransacao = b.idTransacao
-where tipo = 1
-group by mes;
+FROM transacaoItens a
+INNER JOIN transacao b
+ON a.idTransacao = b.idTransacao
+WHERE tipo = 1
+GROUP BY mes;
 
--- Quanto foi gasto por mês com entrada de produtos?
+-- 3) Quanto foi gasto por mês com entrada de produtos?
 SELECT MONTH(dataFim) AS mes, sum(preco) + sum(frete) + sum(imposto) AS gastos
-from transacao
-where tipo = 0
-group by mes;
+FROM transacao
+WHERE tipo = 0
+GROUP BY mes;
 
--- Quanto foi ganho por mês com a saída de produtos?
+-- 4) Quanto foi ganho por mês com a saída de produtos?
 SELECT MONTH(dataFim) AS mes, sum(preco) - sum(frete) - sum(imposto) AS ganhos
-from transacao
-where tipo = 1
-group by mes;
+FROM transacao
+WHERE tipo = 1
+GROUP BY mes;
 
--- Qual foi o lucro mensal (considerando apenas entrada e saída de produtos)?
+-- 5) Qual foi o lucro mensal (considerando apenas entrada e saída de produtos)?
 SELECT MONTH(a.dataFim) AS mes, sum(a.ganhos) - sum(b.gastos)
-from (select idTransacao, preco - frete - imposto AS ganhos, dataFim
-  from transacao 
-  where tipo = 1) as a
-inner join
-(select idTransacao, preco + frete + imposto AS gastos
-  from transacao
-  where tipo = 0) as b
-on a.idTransacao = b.idTransacao
-group by mes;
+FROM (SELECT idTransacao, preco - frete - imposto AS ganhos, dataFim
+  FROM transacao 
+  WHERE tipo = 1) a
+INNER JOIN
+(SELECT idTransacao, preco + frete + imposto AS gastos
+  FROM transacao
+  WHERE tipo = 0) b
+ON a.idTransacao = b.idTransacao
+GROUP BY mes;
 
   
--- Qual o fornecedor que mais deu produtos?
-select a.nome
-from Fornecedor a
-inner join Transacao b
-on a.idFornecedor = b.idFornecedor
-inner join TransacaoItens c
-on b.idTransacao = c.idTransacao
-group by a.nome
-order by count(c.*) desc;
+-- 6) Qual o fornecedor que mais deu produtos?
+SELECT a.nome AS fornecedor
+FROM fornecedor a
+INNER JOIN transacao b
+ON a.idFornecedor = b.idFornecedor
+INNER JOIN transacaoItens c
+ON b.idTransacao = c.idTransacao
+GROUP BY a.nome
+ORDER BY COUNT(c.*) DESC;
 
--- Quais produtos estão abaixo da quantidade mínima?
-select distinct a.nome, b.nome
-from Produto a
-inner join Categoria b
-on a.idCategoria = b.idCategoria
-inner join Estoque c
-in a.idProduto = c.idProduto
-where c.qtdeEstoque < c.qtdemin;
+-- 7) Quais produtos estão abaixo da quantidade mínima?
+SELECT a.nome AS produto, b.nome AS categoria, c.idEstoque AS "id estoque"
+FROM produto a
+INNER JOIN categoria b
+ON a.idCategoria = b.idCategoria
+INNER JOIN estoqueItens c
+IN a.idProduto = c.idProduto
+WHERE c.qtdeEstoque < c.qtdemin;
 
--- Quais produtos estão próximos da quantidade mínima
-select distinct a.nome, b.nome
-from Produto a
-inner join Categoria b
-on a.idCategoria = b.idCategoria
-inner join Estoque c
-on a.idProduto = c.idProduto
-where c.qtdeEstoque < c.qtdemin*2;
+-- 8) Quais produtos estão próximos ou abaixo da quantidade mínima?
+SELECT a.nome AS produto, b.nome AS categoria, c.idEstoque AS "id estoque"
+FROM produto a
+INNER JOIN categoria b
+ON a.idCategoria = b.idCategoria
+INNER JOIN estoqueItens c
+ON a.idProduto = c.idProduto
+WHERE c.qtdeEstoque < c.qtdemin*2;
+
 
