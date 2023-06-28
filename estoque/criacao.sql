@@ -20,13 +20,20 @@ CREATE TABLE produto(
 DROP TABLE IF EXISTS estoque;
 CREATE TABLE estoque(
     idEstoque int identity NOT NULL,
-    idProduto int NOT NULL,
     idLocalizacao int NOT NULL,
     nome varchar(100) NOT NULL,
+    primary key (idEstoque)    
+);
+
+DROP TABLE IF EXISTS estoqueItens;
+CREATE TABLE estoqueItens(
+    idEstoqueItens int identity NOT NULL,
+    idEstoque int NOT NULL,
+    idProduto int NOT NULL, 
     qtde_min int NOT NULL,
     qtde_estoque int NOT NULL,
     total int NOT NULL,
-    primary key (idEstoque)    
+    primary key (idEstoqueItens)    
 );
 
 DROP TABLE IF EXISTS localizacao;
@@ -89,8 +96,11 @@ CREATE TABLE transportadora(
 
 ALTER TABLE produto ADD CONSTRAINT fk_produto_categoria foreign key (idCategoria) references categoria (idCategoria);
 
-ALTER TABLE estoque ADD CONSTRAINT fk_estoque_produto foreign key (idProduto) references produto(idProduto);
+
 ALTER TABLE estoque ADD CONSTRAINT fk_estoque_localizacao foreign key (idLocalizacao) references localizacao(idLocalizacao);
+
+ALTER TABLE estoqueItens ADD CONSTRAINT fk_estoqueItens_produto foreign key (idProduto) references produto(idProduto);
+ALTER TABLE estoqueItens ADD CONSTRAINT fk_estoqueItens_estoque foreign key (idEstoque) references estoque(idEstoque);
 
 ALTER TABLE transacao ADD CONSTRAINT fk_entrada_fornecedor foreign key (idFornecedor) references fornecedor (idFornecedor);
 ALTER TABLE transacao ADD CONSTRAINT fk_entrada_trasportadora foreign key (idTransportadora) references transportadora (idTransportadora);
