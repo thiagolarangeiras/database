@@ -45,13 +45,13 @@ INSERT INTO produto (idcategoria, nome, descricao, peso, preco) VALUES
 ;
 
 INSERT INTO localizacao (cidade, bairro, logradouro, numero, cep) VALUES
-    ('SC', 'Criciúma', 'Verdinho', 'R. Tranquilo Dalmolin', 13, '88814505'),
-    ('BH', 'Salvador', 'Cajazeira', 'Rua Álvaro da Franca Rocha', 15, '41334320'),
-    ('SC', 'Blumenau', 'Velha', 'R. Gov. Jorge Lacerda', 80, '89045338'), 
-    ('SC', 'Joinville', 'Anita Garibaldi', 'R. Dr. Plácido Olímpio de Oliveira', 1158, '89202165'),
-    ('PR', 'Curitiba', 'Mercês', 'R. Cap. Joseph Pereira Quevedo', 622, '80710120'),
-    ('SC', 'Florianópolis', 'Centro', 'R. Des. Arno Hoeschl', 360, '88015620'),
-    ('SC', 'São José', 'Campinas', 'Av. Salvador di Bernardi', 77, '88101260')
+    ('Criciúma', 'Verdinho', 'R. Tranquilo Dalmolin', 13, '88814505'),
+    ('Salvador', 'Cajazeira', 'Rua Álvaro da Franca Rocha', 15, '41334320'),
+    ('Blumenau', 'Velha', 'R. Gov. Jorge Lacerda', 80, '89045338'), 
+    ('Joinville', 'Anita Garibaldi', 'R. Dr. Plácido Olímpio de Oliveira', 1158, '89202165'),
+    ('Curitiba', 'Mercês', 'R. Cap. Joseph Pereira Quevedo', 622, '80710120'),
+    ('Florianópolis', 'Centro', 'R. Des. Arno Hoeschl', 360, '88015620'),
+    ('São José', 'Campinas', 'Av. Salvador di Bernardi', 77, '88101260')
 ;
 
 INSERT INTO estoqueItens (idEstoque, idProduto, qtde_min, qtde_maxima, qtde) VALUES
