@@ -91,7 +91,7 @@ CREATE TABLE transportadora(
     nome varchar(100),
     cnpj char(14) NOT NULL,
     telefone varchar(20) NULL,
-    email varchar(50) NULL,
+    email varchar(256) NULL,
     primary key (idTransportadora)
 );
 
