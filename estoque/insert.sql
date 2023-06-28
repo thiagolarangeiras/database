@@ -9,6 +9,7 @@ INSERT INTO categoria (nome, descricao) VALUES
     ('brinquedo da China', 'produtos da China'),
     ('remédios', 'produtos farmacêuticos'),
     ('hot wheels', 'produtos da mattel')
+;
 
 INSERT INTO produto (idcategoria, nome, descricao, peso, preco) VALUES 
     (1, 'Cloreto de amônia', 'amõnia', 1.5, 220),
@@ -41,6 +42,7 @@ INSERT INTO produto (idcategoria, nome, descricao, peso, preco) VALUES
     (10, 'Dodge Challenger verde do ben ten', 'o jp tem esse carro na vida real!!!!'),
     (10, '69 Ford Mustang', 'Modelo do 007'),
     (10, 'HW450F', 'motinha top eu tinha uma dessa')
+;
 
 INSERT INTO localizacao (cidade, bairro, logradouro, numero, cep) VALUES
     ('SC', 'Criciúma', 'Verdinho', 'R. Tranquilo Dalmolin', 13, '88814505'),
@@ -50,6 +52,7 @@ INSERT INTO localizacao (cidade, bairro, logradouro, numero, cep) VALUES
     ('PR', 'Curitiba', 'Mercês', 'R. Cap. Joseph Pereira Quevedo', 622, '80710120'),
     ('SC', 'Florianópolis', 'Centro', 'R. Des. Arno Hoeschl', 360, '88015620'),
     ('SC', 'São José', 'Campinas', 'Av. Salvador di Bernardi', 77, '88101260')
+;
 
 INSERT INTO estoqueItens (idEstoque, idProduto, qtde_min, qtde_maxima, qtde) VALUES
     (1, 1, 5, 500, 60),
@@ -61,6 +64,7 @@ INSERT INTO estoqueItens (idEstoque, idProduto, qtde_min, qtde_maxima, qtde) VAL
     (3, 20, 50, 100, 51),
     (3, 21, 100, 200, 199),
     (1, 21, 10, 20, 22)
+;
 
 INSERT INTO estoque (idLocalizacao, nome) VALUES
     (1, 'Setor A'),
@@ -70,3 +74,48 @@ INSERT INTO estoque (idLocalizacao, nome) VALUES
     (1, 'Setor E'),
     (1, 'Setor F'),
     (1, 'Setor G')
+;
+
+INSERT INTO fornecedor (idLocalizacao, nome, cnpj, telefone, email) VALUES 
+    (1, 'Mattel' , '12345678901234', '9999999999', 'email@email'), 
+    (2, 'Vale' , '12345678901234', '9999999999', 'email@email'), -- metal
+    (3, 'Globalpack' , '12345678901234', '9999999999', 'email@email'),  --plastico
+    (4, 'JBS' , '12345678901234', '9999999999', 'email@email'),
+    (5, 'Dow Chemical' , '12345678901234', '9999999999', 'email@email'),
+    (6, 'Multilaser' , '12345678901234', '9999999999', 'email@email'),
+    (7, 'Bayer' , '12345678901234', '9999999999', 'email@email')
+;
+    
+INSERT INTO transportadora (idLocalizacao, nome, cnpj, telefone, email) VALUES
+    (1, 'TNT Mercúrio Cargas e Encomendas Expressas' , '12345678901234', '9999999999', 'email@email'),
+    (2, 'Rodonaves Transportes e Encomendas' , '12345678901234', '9999999999', 'email@email'),
+    (3, 'Patrus Transportes Urgentes' , '12345678901234', '9999999999', 'email@email'),
+    (4, 'Jamef Transportes' , '12345678901234', '9999999999', 'email@email'),
+    (5, 'Alfa Transportes' , '12345678901234', '9999999999', 'email@email'),
+    (6, 'Expresso São Miguel' , '12345678901234', '9999999999', 'email@email'),
+    (7, 'Transportes Translovato' , '12345678901234', '9999999999', 'email@email')
+;
+
+-- tipo = 0 entrada 
+-- tipo = 1 saida
+INSERT INTO transacao (idFornecedor, idTransportadora, dataRegistro, dataFim, preco, frete, imposto, tipo) VALUES
+    (1, 1, '2023/01/01 10:10:10', '2023/06/01 12:00:00', 100.00, 50.0, 1, 0),
+    (2, 2, '2023/01/01 10:10:10', '2023/06/01 12:00:00', 200.50, 150.0, 1, 0),
+    (3, 3, '2023/01/01 10:10:10', '2023/06/01 12:00:00', 300.75, 25..4, 1, 0),
+    (4, 4, '2023/01/01 10:10:10', '2023/06/01 12:00:00', 100.00, 50.0, 1, 0),
+    (null, 5, '2023/01/01 10:10:10', '2023/06/01 12:00:00', 100.00, 50.0, 1, 0),
+    (null, 6, '2023/01/01 10:10:10', '2023/06/01 12:00:00', 100.00, 50.0, 1, 0),
+    (null, 7, '2023/01/01 10:10:10', '2023/06/01 12:00:00', 100.00, 50.0, 1, 0)
+;
+
+INSERT INTO transacaoItens (idEstoqueItens, idProduto, idEstoque, idtransacao, qtde) VALUES
+    (1, 1, 1, 1, 100),
+    (2, 2, 2, 2, 500),
+    (3, 6, 1, 3, 150),
+    (4, 11, 1, 4, 50),
+    (5, 18, 2, 5, 15),
+    (6, 19, 2, 6, 200),
+    (7, 20, 3, 7, 400),
+    (8, 21, 3, 1, 10),
+    (9, 21, 1, 2, 3)
+;
